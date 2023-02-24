@@ -6,15 +6,15 @@ import pywhatkit # Import the pywhatkit library for sending WhatsApp messages
 
 def sendmessage(message):
     # Function that sends a WhatsApp message to multiple people
-    pywhatkit.sendwhatmsg_to_group_instantly("GROUP_ID", message, 15, tab_close=True)
-    pywhatkit.sendwhatmsg_instantly('PHONE_NUMBER', message, 15, tab_close=True)
-    pywhatkit.sendwhatmsg_instantly('PHONE_NUMBER', message, 15, tab_close=True)    
-    pywhatkit.sendwhatmsg_instantly('PHONE_NUMBER', message, 15, tab_close=True)        
-    pywhatkit.sendwhatmsg_instantly('PHONE_NUMBER', message, 15, tab_close=True)
+    pywhatkit.sendwhatmsg_to_group_instantly("J4naVkHnz3OL0QXSlK2GSn", message, 15, tab_close=True)
+    pywhatkit.sendwhatmsg_instantly('+16399996272', message, 15, tab_close=True)
+    pywhatkit.sendwhatmsg_instantly('+13062096272', message, 15, tab_close=True)    
+    pywhatkit.sendwhatmsg_instantly('+13065363188', message, 15, tab_close=True)        
+    pywhatkit.sendwhatmsg_instantly('+6393826272', message, 15, tab_close=True)
 
 while True:
     # Make a GET request to the prayer timings API
-    response = requests.get('http://api.aladhan.com/v1/timingsByCity?city=CITY&country=COUNTRY&method=2')
+    response = requests.get('http://api.aladhan.com/v1/timingsByCity?city=Regina&country=Canada&method=2')
     if response.status_code == 200:
         # If the request to the API was successful, extract the prayer timings
         prayer_information = response.json()['data']['timings']            
@@ -22,7 +22,7 @@ while True:
         # Create a list of tuples which contain the prayer names and timings 
         prayer = list(zip(prayer_information.keys(), prayer_information.values()))
         # Filter out unnecessary data
-        prayer = [t for t in prayer if t[0] != 'Imsak' and t[0] != 'Firstthird' and t[0] != 'Lastthird' and t[0] != 'Midnight']
+        prayer = [t for t in prayer if t[0] != 'Imsak' and t[0] != 'Firstthird' and t[0] != 'Lastthird' and t[0] != 'Midnight' and t[0] != 'Sunset']
         # Creates a formatted table of prayer timings 
         table = '```--------------------\n| Prayer  | Time   |\n| --------|--------|\n'
         for p in prayer:
@@ -42,3 +42,4 @@ while True:
         # If the request fails pring status code and response reason
         print(f'Error: {response.status_code} - {response.reason}')
         time.sleep(60)
+        
